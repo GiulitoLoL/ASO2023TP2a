@@ -13,25 +13,24 @@ while(1 == 1){ //repetir infinitamente hasta que fuerce la terminacion del hilo 
         if(turno != 1){    
             while(turno != 1)
             if (cantidad_restante_hamburguesas > 0) {
-            printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
-            cantidad_restante_hamburguesas--; //me como una hamburguesa
+                printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
+                cantidad_restante_hamburguesas--; //me como una hamburguesa
             } else
             {
-            printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
-            pthread_exit(NULL); //forzar terminacion del hilo
+                printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
+                pthread_exit(NULL); //forzar terminacion del hilo
             }
             turno = 1;
         }
         else{
-            
             while(turno != 0)
             if (cantidad_restante_hamburguesas > 0) {
-            printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
-            cantidad_restante_hamburguesas--; //me como una hamburguesa
+                printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
+                cantidad_restante_hamburguesas--; //me como una hamburguesa
             } else
             {
-            printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
-            pthread_exit(NULL); //forzar terminacion del hilo
+                printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
+                pthread_exit(NULL); //forzar terminacion del hilo
             }
             turno = 0;
         }
