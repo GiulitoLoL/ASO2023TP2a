@@ -4,37 +4,21 @@
 #define NUMBER_OF_THREADS 2
 #define CANTIDAD_INICIAL_HAMBURGUESAS 20
 int cantidad_restante_hamburguesas = CANTIDAD_INICIAL_HAMBURGUESAS; 
-
+int turno = 0;
 
 void *comer_hamburguesa(void *tid) { 
-int turno;
 while(1 == 1){ //repetir infinitamente hasta que fuerce la terminacion del hilo con pthread_exit
-	while(1 == 1){
-        if(turno != 1){    
-            while(turno != 1)
-            if (cantidad_restante_hamburguesas > 0) {
-                printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
-                cantidad_restante_hamburguesas--; //me como una hamburguesa
-            } else
-            {
-                printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
-                pthread_exit(NULL); //forzar terminacion del hilo
-            }
-            turno = 1;
-        }
-        else{
-            while(turno != 0)
-            if (cantidad_restante_hamburguesas > 0) {
-                printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
-                cantidad_restante_hamburguesas--; //me como una hamburguesa
-            } else
-            {
-                printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
-                pthread_exit(NULL); //forzar terminacion del hilo
-            }
-            turno = 0;
-        }
-    }
+	
+    while(tid != turno);
+    if (cantidad_restante_hamburguesas > 0) {
+	printf("Hola! soy el hilo(comensal) %d , me voy a comer una hamburguesa ! ya que todavia queda/n %d \n",tid, cantidad_restante_hamburguesas);
+	cantidad_restante_hamburguesas--; //me como una hamburguesa
+	turno = (turno + 1)% NUMBER_OF_THREADS;
+    } else
+	{
+	printf("SE TERMINARON LAS HAMBURGUESAS :( \n"); 
+	pthread_exit(NULL); //forzar terminacion del hilo
+	}
 }
 
 }
@@ -58,4 +42,5 @@ int main(int argc, char *argv[]) {
         pthread_exit(NULL); //como los hilos que cree ya terminaron de ejecutarse, termino yo tambien.
 
 } 
+
 
